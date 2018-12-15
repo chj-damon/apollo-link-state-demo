@@ -11,10 +11,9 @@ const todoDefaults = {
   currentTodos: []
 };
 
-/*
-  GraphQL
-*/
-
+/**
+ * Graphql的 query和 mutation操作
+ */
 const todoQuery = gql`
   query GetTodo {
     currentTodos @client
@@ -33,9 +32,12 @@ const addTodoQuery = gql`
   }
 `;
 
-/*
-  Cache Mutations
-*/
+/**
+ * 对应上面的graphql的 mutation操作的具体实现
+ * @param {*} _obj
+ * @param {*} param1
+ * @param {*} param2
+ */
 const addTodo = (_obj, { item }, { cache }) => {
   const query = todoQuery;
   // Read the todo's from the cache
@@ -60,10 +62,6 @@ const clearTodo = (_obj, _args, { cache }) => {
   return null;
 };
 
-/*
-  Store
-*/
-
 /**
  * The Store object used to construct
  * Apollo Link State's Client State
@@ -76,10 +74,10 @@ const store = {
   }
 };
 
-/*
-  Helpers
-*/
-
+/**
+ * 这里的props对应的是
+ * https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-config-props
+ */
 const todoQueryHandler = {
   props: ({ ownProps, data: todoDefaults }) => ({
     ...ownProps,
