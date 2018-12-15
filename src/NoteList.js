@@ -2,7 +2,7 @@ import React from 'react';
 import compose from 'recompose/compose';
 import withState from 'recompose/withState';
 
-import { withNotes } from './NoteStore';
+import { withNotes } from './stores/noteStore';
 
 const NoteListPure = ({
   savedNotes,
